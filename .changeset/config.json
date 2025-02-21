@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.0/schema.json",
+  "changelog": ["@cherry-markdown/changesets-changelog-github", {"repo": "cherry-markdown/changesets-changelog-github"}],
+  "commit": false,
+  "fixed": [],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "dev",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}
