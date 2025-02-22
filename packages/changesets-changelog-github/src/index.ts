@@ -37,19 +37,25 @@ const changelogFunctions: ChangelogFunctions = {
 
 		return [changesetLink, ...updatedDependenciesList].join('\n');
 	},
-  getReleaseLine: async (changeset, type, changelogOpts) => {
+  getReleaseLine: async (changeset, _type, changelogOpts) => {
 		validateChangelogOpts(changelogOpts);
-		console.log('changeset', changeset, type, changelogOpts);
 		const { summary, commit } = changeset;
+		if (!commit) {
+			throw new Error(
+				'No commit found for changeset, this should not happen, please open an issue'
+			)
+		};
 
-			const data= await getInfo({
+			const commitInfo= await getInfo({
 				repo: changelogOpts?.repo,
 				commit: commit
 			})
 
+			const commitUser= commitInfo.links?.user ? `${commitInfo.links?.user}` : "";
+			const commitPull= commitInfo.links?.pull ? `(${commitInfo.links?.pull})` : "";
+			const commitCommit= commitInfo.links?.commit ? `(${commitInfo.links?.commit})` : "";
 
-		return `- ${summary}`;
-
+		return `- ${summary} ${commitUser}${commitPull}${commitCommit}`; 
   }
 };
 
