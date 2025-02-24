@@ -7,7 +7,9 @@ on:
 
 jobs:
   release:
+    if: github.repository == 'cherry-markdown/changesets-changelog-github'
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
@@ -36,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish @cherry-markdown/changesets-changelog-github
-      if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"@cherry-markdown/changesets-changelog-github"') }}
+        if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"@cherry-markdown/changesets-changelog-github"') }}
         run: |
           cd packages/changesets-changelog-github
           npm publish --access public
