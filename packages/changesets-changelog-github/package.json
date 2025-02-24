@@ -1,6 +1,6 @@
 {
   "name": "@cherry-markdown/changesets-changelog-github",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/cherry-markdown/changesets-changelog-github#readme",
   "scripts": {
     "dev": "tsdown",
-    "build": "tsdown build"
+    "build": "tsdown"
   },
   "dependencies": {
     "@changesets/get-github-info": "^0.6.0",

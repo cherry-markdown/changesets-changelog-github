@@ -2,4 +2,4 @@
 "@cherry-markdown/changesets-changelog-github": patch
 ---
 
-feat: use `tsdown` dev build
+ci: add ci to auto release

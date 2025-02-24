@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: |
+          npm install -g pnpm
+          pnpm install
+          pnpm run build
+
+      - name: Check for changesets
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: npx @changesets/cli version
+          title: "chore: release"
+          commit: "chore: release"
+          publish: pnpm changeset tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish @cherry-markdown/changesets-changelog-github
+      if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"@cherry-markdown/changesets-changelog-github"') }}
+        run: |
+          cd packages/changesets-changelog-github
+          npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
