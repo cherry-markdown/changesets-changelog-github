@@ -36,7 +36,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish @cherry-markdown/changesets-changelog-github
+      if: ${{ contains(steps.changesets.outputs.publishedPackages, '"name":"@cherry-markdown/changesets-changelog-github"') }}
         run: |
+          cd packages/changesets-changelog-github
           npm publish --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
