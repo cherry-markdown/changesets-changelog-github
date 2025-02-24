@@ -1,5 +1,6 @@
 {
   "name": "@cherry-markdown/changesets-changelog-github",
+  "description": "cherry-markdown's changesets plugin to generate changelog from github",
   "version": "0.0.0",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
