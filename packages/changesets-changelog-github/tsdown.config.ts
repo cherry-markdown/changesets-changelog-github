@@ -1,4 +1,3 @@
-
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
@@ -10,7 +9,6 @@ export default defineConfig({
   platform: 'node',
   skipNodeModulesBundle: true,
   shims: true,
-  bundleDts: true,
   onSuccess() {
     console.info('🙏 Build succeeded!')
   },

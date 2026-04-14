@@ -1,7 +1,8 @@
 {
   "name": "@cherry-markdown/changesets-changelog-github",
-  "description": "cherry-markdown's changesets plugin to generate changelog from github",
-  "version": "0.0.1",
+  "description": "Changesets changelog plugin with GitHub PR, commit and user links",
+  "version": "0.1.0",
+  "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,26 +13,32 @@
       "require": "./dist/index.cjs"
     }
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cherry-markdown/changesets-changelog-github.git",
-    "directory": "packages/changesets-changelog-github-compact"
+    "directory": "packages/changesets-changelog-github"
   },
   "bugs": {
     "url": "https://github.com/cherry-markdown/changesets-changelog-github/issues"
   },
   "homepage": "https://github.com/cherry-markdown/changesets-changelog-github#readme",
   "scripts": {
-    "dev": "tsdown",
-    "build": "tsdown"
+    "dev": "tsdown --watch",
+    "build": "tsdown && tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@changesets/get-github-info": "^0.6.0",
+    "@changesets/get-release-plan": "^4.0.8",
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "@changesets/parse": "^0.4.1",
     "@changesets/types": "^6.1.0",
+    "@types/node": "^25.6.0",
     "tsdown": "^0.6.0",
     "vitest": "^3.0.6"
   }
